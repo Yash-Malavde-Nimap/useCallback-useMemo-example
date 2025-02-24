@@ -1,30 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { useState, useMemo } from "react";
 
 function Memo() {
   const [count, setCount] = useState(0);
   const [input, setInput] = useState("");
-  const [array, setArray] = useState([]);
 
   const handleInput = (e) => {
-    // e.preventDefault();
     setInput(e.target.value);
     console.log(input);
   };
 
-  // Memoize the result of the expensive calculation
   const computedValue = useMemo(() => {
-    console.log("Expensive computation running...");
+    let res = 0;
+    for (let i = 0; i < 1000000000; i++) {
+      res += i;
+    }
+    console.log("Expensive Function Running...");
 
-    setArray([...array, count + 1]);
-
-    console.log(array);
-    return array;
-  }, [count >= 5 ? "" : count]);
+    return res;
+  }, []);
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        color: "white",
+        border: "2px solid black",
+        padding: "50px",
+        margin: "20px",
+      }}
+    >
+      <h2>useMemo</h2>
       <h1>Count: {count}</h1>
       <button style={{ padding: "10px" }} onClick={() => setCount(count + 1)}>
         Increment Count

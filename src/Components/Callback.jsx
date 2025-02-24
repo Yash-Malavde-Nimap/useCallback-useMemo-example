@@ -13,8 +13,22 @@ function Callback() {
     setSalary(salary + 50000);
   }, [salary]);
 
+
+  
   return (
-    <div style={{display:'flex',flexDirection:'column',gap:'20px'}}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+        color: "white",
+        border: "2px solid black",
+        padding: "50px",
+        margin:'20px'
+      }}
+    >
+      <h2>useCallback</h2>
+
       <h2>AGE : {age}</h2>
       <h2>SALARY : {salary}</h2>
 
@@ -26,12 +40,20 @@ function Callback() {
 
 const Age = React.memo(({ ageClick }) => {
   console.log("Age Re-Rendered");
-  return <button style={{padding:'10px'}}  onClick={ageClick}>Age</button>;
+  return (
+    <button style={{ padding: "10px" }} onClick={ageClick}>
+      Age
+    </button>
+  );
 });
 
 const Salary = React.memo(({ salaryClick }) => {
   console.log("Salary Re-Rendered");
-  return <button style={{padding:'10px'}}  onClick={salaryClick}>Salary</button>;
+  return (
+    <button style={{ padding: "10px" }} onClick={salaryClick}>
+      Salary
+    </button>
+  );
 });
 
 export default Callback;
